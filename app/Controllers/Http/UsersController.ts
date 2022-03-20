@@ -14,15 +14,44 @@ export default class UsersController {
 
     public addUser = async ({request}) => {
         try{
-            await Database
-            .insertQuery()
-            .table('users')
-            .insert({name: request.all().name, role: request.all().role})
+            await Users
+            .create({
+                name:request.all().name,
+                role: request.all().role
+            })
             
             return "User Created"
         } catch(error){
             return error
         }
        
+    }
+
+    public deleteUser = async ({params})=>{
+        try{
+            await Users
+            .query()
+            .where('id',params.id)
+            .delete()
+
+            return "User deleted"
+        } catch(error) {
+            return params.id
+        }
+    }
+
+    public updateUserRole = async ({request}) => {
+        try { 
+            const user = request.all()
+            await Users
+            .query()
+            .where('id',user.id)
+            .update({
+                role: user.role
+            })
+            return "Role Updated"
+        } catch(error) {
+            return error
+        }
     }
 }
