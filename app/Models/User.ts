@@ -1,5 +1,5 @@
 import { BaseModel, column,hasOne,HasOne } from '@ioc:Adonis/Lucid/Orm'
-import Cargo from './Cargo'
+
 
 export default class Users extends BaseModel {
   @column({ isPrimary: true })

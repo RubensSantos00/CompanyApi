@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from "@ioc:Adonis/Lucid/Database";
 import Users from "App/Models/User";
+import { DateTime } from "luxon";
 
 export default class UsersController {
 
@@ -47,7 +48,8 @@ export default class UsersController {
             .query()
             .where('id',user.id)
             .update({
-                role: user.role
+                role: user.role,
+                updated_at: DateTime.now()
             })
             return "Role Updated"
         } catch(error) {

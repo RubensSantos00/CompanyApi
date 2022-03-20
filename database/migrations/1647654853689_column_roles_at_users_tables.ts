@@ -8,8 +8,9 @@ export default class TableUsers extends BaseSchema {
       table
         .integer('role')
         .references('id')
-        .inTable('roles')        
+        .inTable('roles')    
         .onDelete('CASCADE')
+        .notNullable()
     })
   }
 
